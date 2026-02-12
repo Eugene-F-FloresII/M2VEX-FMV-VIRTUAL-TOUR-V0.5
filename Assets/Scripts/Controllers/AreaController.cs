@@ -23,12 +23,14 @@ namespace Controllers
         [SerializeField] private LookController _lookUpButtonPrefab;
         [SerializeField] private TransitionController _forwardButtonPrefab;
         [SerializeField] private TransitionController _backwardButtonPrefab;
+        [SerializeField] private PadLockController _padLockPrefab;
         
         [Header("Scriptable Objects References")] 
         [SerializeField] private VideoClipsScriptableObject _areaScriptableObject;
         
         [Header("Canvas Reference")]
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] private Canvas _areaCanvas;
+        [SerializeField] private Canvas _padlockCanvas;
         
         [Header("List of Buttons in Area (Don't add anything here)")]
         [SerializeField] private List<GameObject> _buttonControllers;
@@ -52,9 +54,12 @@ namespace Controllers
         
         [Header("Location Name")]
         [SerializeField] private string _locationName;
+
+        [Header("Does area have minigame?")] 
+        [SerializeField] public bool _lockArea;
         
         //private readonly string _eventLogText = "Looking at: ";
-        
+        private PadLockController _padLockController;
         private LocationManager _locationManager;
         private EventLogsManager _eventLogsManager;
         private LookController _lookRightController;
@@ -62,7 +67,6 @@ namespace Controllers
         private LookController _lookUpController;
         private TransitionController _forwardTransitionController;
         private TransitionController _backwardTransitionController;
-
         private void Awake()
         {
             _locationManager = ServiceLocator.Get<LocationManager>();
@@ -70,6 +74,8 @@ namespace Controllers
 
         private void OnEnable()
         {
+            UpdateAreaPadlock();
+            
             SpawnButtons();
             
             VideoClipManager.OnPickedIdleClipName?.Invoke(_areaClipName);
@@ -102,6 +108,24 @@ namespace Controllers
     
                     _buttonControllers.Clear();
                 }
+
+        public void UpdateAreaPadlock()
+        {
+            if (_lockArea && _padlockCanvas != null)
+            {
+                _padLockController = Instantiate(_padLockPrefab,_padlockCanvas.transform);
+                _padLockController.Initialize(this);
+            }
+            else
+            {
+                if (_padLockController != null && _padlockCanvas != null)
+                {
+                    Destroy(_padLockController.gameObject);
+                }
+                
+                Debug.Log("Not Locked");
+            }
+        }
         
        public void SpawnButtons()
         {
@@ -109,7 +133,7 @@ namespace Controllers
             
             if (_lookRight && _areaScriptableObject._lookRightClip != null)
             {
-               _lookRightController = Instantiate(_lookRightButtonPrefab, _canvas.transform);
+               _lookRightController = Instantiate(_lookRightButtonPrefab, _areaCanvas.transform);
                _lookRightController.Initialize(this, _areaRightToolTip);
                _lookRightController.AreaVideoClip(_areaScriptableObject._lookRightClip, _areaClipName);
 
@@ -124,7 +148,7 @@ namespace Controllers
             
             if (_lookLeft && _areaScriptableObject._lookLeftClip != null)
             {
-                _lookLeftController = Instantiate(_lookLeftButtonPrefab, _canvas.transform);
+                _lookLeftController = Instantiate(_lookLeftButtonPrefab, _areaCanvas.transform);
                 _lookLeftController.Initialize(this, _areaLeftToolTip);
                 _lookLeftController.AreaVideoClip(_areaScriptableObject._lookLeftClip, _areaClipName);
 
@@ -140,7 +164,7 @@ namespace Controllers
             
             if (_lookUp && _areaScriptableObject._lookUpClip != null)
             {
-                _lookUpController = Instantiate(_lookUpButtonPrefab, _canvas.transform);
+                _lookUpController = Instantiate(_lookUpButtonPrefab, _areaCanvas.transform);
                 _lookUpController.Initialize(this, _areaUpToolTip);
                 _lookUpController.AreaVideoClip(_areaScriptableObject._lookUpClip, _areaClipName);
          
@@ -155,7 +179,7 @@ namespace Controllers
 
             if (_forward && _forwardButtonPrefab != null)
             {
-                _forwardTransitionController = Instantiate(_forwardButtonPrefab, _canvas.transform);
+                _forwardTransitionController = Instantiate(_forwardButtonPrefab, _areaCanvas.transform);
                 _forwardTransitionController.Initialize(this);
                 _forwardTransitionController.PlaceToolTipMessage(_areaForwardToolTip);
                 _forwardTransitionController.SetBoolVariable(_forwardTransition);
@@ -167,7 +191,7 @@ namespace Controllers
 
             if (_back && _backwardButtonPrefab != null)
             {
-                _backwardTransitionController = Instantiate(_backwardButtonPrefab, _canvas.transform);
+                _backwardTransitionController = Instantiate(_backwardButtonPrefab, _areaCanvas.transform);
                 _backwardTransitionController.Initialize(this);
                 _backwardTransitionController.PlaceToolTipMessage(_areaBackwardToolTip);
                 _backwardTransitionController.SetBoolVariable(_forwardTransition);

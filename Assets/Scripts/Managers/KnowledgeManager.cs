@@ -35,18 +35,23 @@ namespace Managers
         {
             ServiceLocator.Register(this);
         }
-
+        
+        private void Start()
+        {
+            UpdateExperienceText();
+        }
+        
         private void OnEnable()
         {
             _currentExperience.OnValueChanged += ExperienceValueChanged;
-            _experienceGained.OnValueChanged += ExperienceGainedValueChanged;
+            _experienceGained.OnValueChanged += UpdateChangedExperienceValue;
         }
 
 
         private void OnDisable()
         {
             _currentExperience.OnValueChanged -= ExperienceValueChanged;
-            _experienceGained.OnValueChanged -= ExperienceGainedValueChanged;
+            _experienceGained.OnValueChanged -= UpdateChangedExperienceValue;
         }
 
         private void OnDestroy()
@@ -54,21 +59,31 @@ namespace Managers
             ServiceLocator.Unregister<KnowledgeManager>();
         }
 
-
-        private void Update()
-        { 
-            UpdateExperienceText();
-        }
+        
 
         public void GainExperience(float value)
         {
             _experienceGained.Value = value;
-            _currentExperience.Value += _experienceGained.Value;
-            
+            _currentExperience.Value += value;
+        }
+        
+        public void ReduceExperience(float value)
+        {
+            _experienceGained.Value = value;
+
+            if (_currentExperience.Value >= 0)
+            {
+                _currentExperience.Value = 0;
+            }
+            else
+            {
+                _currentExperience.Value -= value;
+            }
         }
 
         private void ExperienceValueChanged(float value)
         {
+            UpdateExperienceText();
             
             _experienceText.text = _currentExperience.Value + "/" + _maxExperiencePerLevel.Value;
             
@@ -85,9 +100,9 @@ namespace Managers
 
         }
 
-        private void ExperienceGainedValueChanged(float value)
+        private void UpdateChangedExperienceValue(float value)
         {
-            UpdatePlayerMood();
+            //UpdatePlayerMood();
         }
 
         private void UpdateExperienceText()
@@ -95,6 +110,7 @@ namespace Managers
             _experienceText.text = _currentExperience.Value + "/" + _maxExperiencePerLevel.Value;
         }
 
+        // Will be implemented in UpdateChangedExperienceValue
         private void UpdatePlayerMood()
         {
             switch (_playerMood)

@@ -58,7 +58,6 @@ namespace Controllers
         [Header("Does area have minigame?")] 
         [SerializeField] public bool _lockArea;
         
-        //private readonly string _eventLogText = "Looking at: ";
         private PadLockController _padLockController;
         private LocationManager _locationManager;
         private EventLogsManager _eventLogsManager;
@@ -67,6 +66,7 @@ namespace Controllers
         private LookController _lookUpController;
         private TransitionController _forwardTransitionController;
         private TransitionController _backwardTransitionController;
+        
         private void Awake()
         {
             _locationManager = ServiceLocator.Get<LocationManager>();
@@ -133,80 +133,93 @@ namespace Controllers
             
             if (_lookRight && _areaScriptableObject._lookRightClip != null)
             {
-               _lookRightController = Instantiate(_lookRightButtonPrefab, _areaCanvas.transform);
-               _lookRightController.Initialize(this, _areaRightToolTip);
-               _lookRightController.AreaVideoClip(_areaScriptableObject._lookRightClip, _areaClipName);
-
-               
-               if (_areaScriptableObject._lookRightClipReversed != null)
-               {
-                   _lookRightController.AreaReverseClip(_areaScriptableObject._lookRightClipReversed, _areaRightClipName);
-               }
-               
-               _buttonControllers.Add(_lookRightController.gameObject);
+                _lookRightController = CreateLookButton(
+                    _lookRightButtonPrefab,
+                    _areaRightToolTip,
+                    _areaScriptableObject._lookRightClip,
+                    _areaScriptableObject._lookRightClipReversed,
+                    _areaClipName);
+                
+                _buttonControllers.Add(_lookRightController.gameObject);
             }
             
             if (_lookLeft && _areaScriptableObject._lookLeftClip != null)
             {
-                _lookLeftController = Instantiate(_lookLeftButtonPrefab, _areaCanvas.transform);
-                _lookLeftController.Initialize(this, _areaLeftToolTip);
-                _lookLeftController.AreaVideoClip(_areaScriptableObject._lookLeftClip, _areaClipName);
-
-
+                _lookLeftController = CreateLookButton(
+                    _lookLeftButtonPrefab,
+                    _areaLeftToolTip,
+                    _areaScriptableObject._lookLeftClip,
+                    _areaScriptableObject._lookLeftClipReversed,
+                    _areaClipName);
                 
-                if (_areaScriptableObject._lookLeftClipReversed != null)
-                {
-                    _lookLeftController.AreaReverseClip(_areaScriptableObject._lookLeftClipReversed, _areaLeftClipName);
-                }
-               
                 _buttonControllers.Add(_lookLeftController.gameObject);
             }
             
             if (_lookUp && _areaScriptableObject._lookUpClip != null)
             {
-                _lookUpController = Instantiate(_lookUpButtonPrefab, _areaCanvas.transform);
-                _lookUpController.Initialize(this, _areaUpToolTip);
-                _lookUpController.AreaVideoClip(_areaScriptableObject._lookUpClip, _areaClipName);
-         
+                _lookUpController = CreateLookButton(
+                    _lookUpButtonPrefab,
+                    _areaUpToolTip,
+                    _areaScriptableObject._lookUpClip,
+                    _areaScriptableObject._lookUpClipReversed,
+                    _areaClipName);
                 
-                if (_areaScriptableObject._lookUpClipReversed != null)
-                {
-                    _lookUpController.AreaReverseClip(_areaScriptableObject._lookUpClipReversed, _areaUpClipName);
-                }
-               
                 _buttonControllers.Add(_lookUpController.gameObject);
             }
 
             if (_forward && _forwardButtonPrefab != null)
             {
-                _forwardTransitionController = Instantiate(_forwardButtonPrefab, _areaCanvas.transform);
-                _forwardTransitionController.Initialize(this);
-                _forwardTransitionController.PlaceToolTipMessage(_areaForwardToolTip);
-                _forwardTransitionController.SetBoolVariable(_forwardTransition);
-  
-                
-                _buttonControllers.Add(_forwardTransitionController.gameObject);
+                _forwardTransitionController = CreateTransitionController(_forwardButtonPrefab,
+                    _areaForwardToolTip,
+                    _forwardTransition);
 
+                _buttonControllers.Add(_forwardTransitionController.gameObject);
             }
 
             if (_back && _backwardButtonPrefab != null)
             {
-                _backwardTransitionController = Instantiate(_backwardButtonPrefab, _areaCanvas.transform);
-                _backwardTransitionController.Initialize(this);
-                _backwardTransitionController.PlaceToolTipMessage(_areaBackwardToolTip);
-                _backwardTransitionController.SetBoolVariable(_forwardTransition);
+                _backwardTransitionController = CreateTransitionController(_backwardButtonPrefab,
+                    _areaBackwardToolTip,
+                    _forwardTransition);
                 
                 _buttonControllers.Add(_backwardTransitionController.gameObject);
             }
+        }
+       
+        private LookController CreateLookButton(LookController lookControllerPrefab,
+            string toolTip,
+            UnityEngine.Video.VideoClip mainClip,
+            UnityEngine.Video.VideoClip reversedClip,
+            string clipName)
+        {
             
+            var lookController = Instantiate(lookControllerPrefab, _areaCanvas.transform);
+            lookController.Initialize(this, toolTip);
+            lookController.AreaVideoClip(mainClip, clipName);
+
+               
+            if (reversedClip != null)
+            {
+                lookController.AreaReverseClip(reversedClip, clipName);
+            }
             
-            
-            
-            
-            
+            return lookController;
         }
 
-        
+        private TransitionController CreateTransitionController(TransitionController transitionControllerPrefab,
+            string toolTip,
+            bool transition
+        )
+        {
+            var transitionController = Instantiate(transitionControllerPrefab, _areaCanvas.transform);
+            transitionController.Initialize(this);
+            transitionController.PlaceToolTipMessage(toolTip);
+            transitionController.SetBoolVariable(transition);
+            
+            return transitionController;
+        }
+
+
     }
     
     

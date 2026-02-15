@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Collection;
@@ -23,6 +22,7 @@ namespace Controllers
         [SerializeField] private float _experienceGained = 25f;
         public float _timeLimit = 60f;
     
+        private EventLogsManager _eventLogsManager;
         private KnowledgeManager _knowledgeManager;
         private MinigameManager _minigameManager;
         private List<Sprite> _spritePairs;
@@ -38,6 +38,7 @@ namespace Controllers
 
         private void Awake()
         {
+            _eventLogsManager = ServiceLocator.Get<EventLogsManager>();
             _minigameManager = ServiceLocator.Get<MinigameManager>();
             _knowledgeManager = ServiceLocator.Get<KnowledgeManager>();
         }
@@ -173,11 +174,14 @@ namespace Controllers
             if (won)
             {
                 //Win
+                _eventLogsManager.InstantiateEventLogs("Memory Game: ", "Win");
                 _knowledgeManager.GainExperience(_experienceGained);
                 _minigameManager.GameFinished();
+                
             }
             else
             {
+                _eventLogsManager.InstantiateEventLogs("Memory Game: ", "Lost");
                _knowledgeManager.ReduceExperience(_experienceGained);
                 _minigameManager.GameFinished();
                 //Lose

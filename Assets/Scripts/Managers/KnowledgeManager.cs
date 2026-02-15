@@ -28,12 +28,15 @@ namespace Managers
         [SerializeField] private Image _playerMoodImage;
         [SerializeField] private List<Sprite> _playerMoodSprites;
 
+        private readonly string _gainedExperience = "Experience Gained: ";
+        private EventLogsManager _eventLogsManager;
         private PlayerMood _playerMood;
         private float _highestExperience;
 
         private void Awake()
         {
             ServiceLocator.Register(this);
+            _eventLogsManager = ServiceLocator.Get<EventLogsManager>();
         }
         
         private void Start()
@@ -65,6 +68,8 @@ namespace Managers
         {
             _experienceGained.Value = value;
             _currentExperience.Value += value;
+            
+            _eventLogsManager.InstantiateEventLogs(_gainedExperience, "+" + value);
         }
         
         public void ReduceExperience(float value)
@@ -79,6 +84,8 @@ namespace Managers
             {
                 _currentExperience.Value -= value;
             }
+            
+            _eventLogsManager.InstantiateEventLogs(_gainedExperience, "-" + value);
         }
 
         private void ExperienceValueChanged(float value)

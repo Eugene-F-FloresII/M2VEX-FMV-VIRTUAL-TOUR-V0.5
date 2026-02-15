@@ -12,6 +12,7 @@ namespace Managers
         [Header("References")]
         [SerializeField] private List<GameObject> _gamesPrefabs;
 
+        private EventLogsManager _eventLogsManager;
         private AreaController _areaController;
         private GameObject _minigame;
         private int _randomIndex;
@@ -19,6 +20,8 @@ namespace Managers
         private void Awake()
         {
             ServiceLocator.Register(this);
+            
+            _eventLogsManager = ServiceLocator.Get<EventLogsManager>();
         }
 
         private void OnDestroy()
@@ -37,9 +40,14 @@ namespace Managers
 
         public void GameFinished()
         {
-            Destroy(_minigame);
+            
+            _eventLogsManager.InstantiateEventLogs("Area: ", "Unlocked");
+            
             _areaController._lockArea = false;
             _areaController.UpdateAreaPadlock();
+            
+            Destroy(_minigame);
+            
         }
 
         public void Initialize(AreaController areaController)

@@ -11,10 +11,11 @@ namespace Managers
     
         [Header("References")]
         [SerializeField] private List<GameObject> _gamesPrefabs;
-
+        
         private EventLogsManager _eventLogsManager;
         private AreaController _areaController;
         private GameObject _minigame;
+        private string _locationName;
         private int _randomIndex;
 
         private void Awake()
@@ -40,8 +41,9 @@ namespace Managers
 
         public void GameFinished()
         {
+            _locationName = _areaController._locationName;
             
-            _eventLogsManager.InstantiateEventLogs("Area: ", "Unlocked");
+            _eventLogsManager.InstantiateEventLogs(_locationName + ": ", "Unlocked");
             
             _areaController._lockArea = false;
             _areaController.UpdateAreaPadlock();

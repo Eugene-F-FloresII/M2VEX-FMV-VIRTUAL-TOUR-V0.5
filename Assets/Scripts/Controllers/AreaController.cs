@@ -53,7 +53,7 @@ namespace Controllers
         [SerializeField] private string _areaBackwardToolTip;
         
         [Header("Location Name")]
-        [SerializeField] private string _locationName;
+        [SerializeField] public string _locationName;
 
         [Header("Does area have minigame?")] 
         [SerializeField] public bool _lockArea;

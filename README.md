@@ -1,8 +1,8 @@
-<h1 align = "center">M2VEX An FMV Virtual School Tour (Unity 6.2)</h1>
+<h1 align = "center">🎮 M2VEX An FMV Virtual School Tour (Unity 6.2) 🎮</h1>
 
 <h2 align = "center"> M2VEX is a virtual campus exploration game designed to provide immersive and informative walkthrough of Mapúa Malayan Colleges Mindanao (MMCM). </h2>
 
-<h3 align = "center"> Currently at Version 0.5 ## </h3>
+<h3 align = "center"> Currently at Version 0.5 </h3>
 
 ### M2VEX Remake: 2D Unity 6.2 ###
 **(Must Finish in Feb 22 !!!)**
@@ -19,8 +19,9 @@
 - Factory Pattern
 - Service Locator Pattern
 
-## NO MAGIC WORDS OR NUMBERS KEEP EVERYTHING DYNAMIC! ## 
-<h2 align = "center"> Features Checklist (44.12% Completion) </h2>
+<h3 align = "center"> ⚠️⚠️REDUCE USE OF MAGIC NUMBERS, BOOLEANS, ETC. KEEP EVERYTHING DYNAMIC!⚠️⚠️ </h3>
+
+<h2 align = "center">☑️ Features Checklist (44.12% Completion) </h2>
 
 ### Controllers: ###
 - Area Controller (Return Button) (Locked Area) ✅

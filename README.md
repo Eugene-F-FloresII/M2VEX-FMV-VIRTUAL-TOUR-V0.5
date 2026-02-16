@@ -17,7 +17,7 @@
 - Service Locator Pattern
 
 ## NO MAGIC WORDS OR NUMBERS KEEP EVERYTHING DYNAMIC! ## 
-## **Features Checklist** ✅ ## 
+## **Features Checklist (44.12% Completion)**  ## 
 ### Controllers: ###
 - Area Controller (Return Button) (Locked Area) ✅
 - Look Controllers ✅

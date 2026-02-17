@@ -19,9 +19,9 @@
 - Factory Pattern
 - Service Locator Pattern
 
-<h3 align = "center"> ⚠️⚠️REDUCE USE OF MAGIC NUMBERS, BOOLEANS, ETC. KEEP EVERYTHING DYNAMIC!⚠️⚠️ </h3>
+<h3 align = "center"> ⚠️⚠️REDUCE USE OF MAGIC NUMBERS, BOOLEANS, ETC.⚠️⚠️ </h3>
 
-<h2 align = "center">☑️ Features Checklist (44.12% Completion) </h2>
+<h2 align = "center">☑️ Features Checklist (55.88% Completion) </h2>
 
 ### Controllers: ###
 - Area Controller (Return Button) (Locked Area) ✅
@@ -29,13 +29,13 @@
 - Transition Controller (Skip Logic?) ✅
 - Minigames Controller (Trivia, Rhythm✓, Memory✓)
 - Minimap Controller ✅
-- Muriel Controller
+- Muriel Controller  ✅ (?)
 - Padlock Controller ✅ (?) 
 
 ### Managers: ###
 - Location Manager✅
 - Pause Menu (?)✅
-- Muriel Manager
+- Muriel Manager  ✅ (?)
 - Discovery Level Manager ✓ (P)
 - Knowledge Manager ✓
 - Mood Manager (P) ✓

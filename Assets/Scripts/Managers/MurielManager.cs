@@ -8,25 +8,21 @@ namespace Managers
 {
     public class MurielManager : MonoBehaviour
     {
-        [SerializeField] private MurielController _murielPrefab;
-        [Header("**Read Only**")]
-        [SerializeField] private List<string> _dialogues;
-        [SerializeField] private IntVariable _dialogueIndex;
-        private MurielController _murielController;
         
         [Header("**Dont Touch**")]
-        public bool _nextDialogue;
-
+        public bool NextDialogue;
+        
+        [Header("References")]
+        [SerializeField] private MurielController _murielPrefab;
+        [SerializeField] private IntVariable _dialogueIndex;
+        
+        [Header("**Read Only**")]
+        [SerializeField] private List<string> _dialogues;
+        private MurielController _murielController;
+        
         private void Awake()
         {
             ServiceLocator.Register(this);
-        }
-
-        private void Start()
-        {
-            SpawnDialogue("Hello",
-                "Name",
-                "Me");
         }
 
         private void OnEnable()
@@ -51,10 +47,10 @@ namespace Managers
                 _dialogues.Clear();
                 Destroy(_murielController.gameObject);
             }
-            else if (_nextDialogue)
+            else if (NextDialogue)
             {
                 _murielController.MurielMessage(_dialogues[_dialogues.Count - value]);
-                _nextDialogue = false;
+                NextDialogue = false;
             }
         }
 
@@ -88,7 +84,7 @@ namespace Managers
             muriel.InitializeMuriel(this);
 
             _dialogueIndex.Value = _dialogues.Count + 1;
-            _nextDialogue = false;
+            NextDialogue = false;
 
             return muriel;
         }

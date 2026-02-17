@@ -8,6 +8,7 @@ namespace Controllers
 {
     public class MurielController : MonoBehaviour
     {
+        [Header("References & Setting")]
         [SerializeField] private TextMeshProUGUI _murielText;
         [SerializeField] private IntVariable _dialogueIndex;
         [SerializeField] private float _typingSpeed = 1f;
@@ -28,7 +29,7 @@ namespace Controllers
 
         public void OnButtonClicked()
         {
-            _murielManager._nextDialogue = true;
+            _murielManager.NextDialogue = true;
             _dialogueIndex.Value--;
         }
 

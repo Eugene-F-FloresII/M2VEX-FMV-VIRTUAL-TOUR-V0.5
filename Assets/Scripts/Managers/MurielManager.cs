@@ -42,6 +42,8 @@ namespace Managers
 
         private void OnDialogueIndexUpdate(int value)
         {
+            //if confused, go to MurielController.cs OnButtonClicked() method
+            
             if (value == 0)
             {
                 _dialogues.Clear();
@@ -53,28 +55,10 @@ namespace Managers
                 NextDialogue = false;
             }
         }
-
-        public void SpawnDialogue(string dialogue)
-        {
-            _dialogues.Add(dialogue);
-            
-            _murielController = CreateMurielController(_murielPrefab);
-        }
         
-        public void SpawnDialogue(string first, string second)
+        public void SpawnDialogue(params string[] dialogue)
         {
-            _dialogues.Add(first);
-            _dialogues.Add(second);
-            
-            _murielController = CreateMurielController(_murielPrefab);
-        }
-        
-        public void SpawnDialogue(string first, string second, string third)
-        {
-            _dialogues.Add(first);
-            _dialogues.Add(second);
-            _dialogues.Add(third);
-
+            _dialogues.AddRange(dialogue);
             _murielController = CreateMurielController(_murielPrefab);
         }
 

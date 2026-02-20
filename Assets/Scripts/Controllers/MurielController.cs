@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Collection;
 using Managers;
 using Obvious.Soap;
 using TMPro;
@@ -12,10 +14,15 @@ namespace Controllers
         [SerializeField] private TextMeshProUGUI _murielText;
         [SerializeField] private IntVariable _dialogueIndex;
         [SerializeField] private float _typingSpeed = 1f;
-        
+
+        private TriviaGameManager _triviaGameManager;
         private MurielManager _murielManager;
         private float _time;
 
+        private void Start()
+        { 
+            _triviaGameManager = ServiceLocator.Get<TriviaGameManager>();
+        }
 
         public void MurielMessage(string message)
         {
@@ -31,8 +38,22 @@ namespace Controllers
         {
             _murielManager.NextDialogue = true;
             _dialogueIndex.Value--;
+
+            if (_triviaGameManager != null && _triviaGameManager._isAsking)
+            {
+                _triviaGameManager.InitializeMurielController(this);
+                
+                StartCoroutine(IEShowAnswers());
+            }
+            
         }
 
+        private IEnumerator IEShowAnswers()
+        {
+            yield return new WaitForSeconds(0.1f);
+            _triviaGameManager.ShowAnswers();
+            
+        }
         private IEnumerator TypeText(string text)
         {
             _murielText.text = "";

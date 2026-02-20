@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Naaaaaaaa
+  m_text: '*Muriel has something to say to you*'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a89db3b3e7e3ea841abae87a2785e866, type: 2}
   m_sharedMaterial: {fileID: -4713667734441108994, guid: a89db3b3e7e3ea841abae87a2785e866, type: 2}

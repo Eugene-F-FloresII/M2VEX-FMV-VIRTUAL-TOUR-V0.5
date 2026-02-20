@@ -535,10 +535,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b68c857ade741e4cbccd3640d65916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.MurielManager
+  NextDialogue: 0
   _murielPrefab: {fileID: 1368255194039375176, guid: 9bf1659f886ea854f8359b458a5d9260, type: 3}
-  _dialogues: []
   _dialogueIndex: {fileID: 11400000, guid: 4d03cf5599049044381950c9775ee39a, type: 2}
-  _nextDialogue: 0
+  _dialogues: []
 --- !u!1 &148332412
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,6 +5361,7 @@ MonoBehaviour:
   _gamesPrefabs:
   - {fileID: 6806118228585470062, guid: b57273443cb24664db3dc29d93c8972c, type: 3}
   - {fileID: 8127374902013013505, guid: 58f87ba2f3170424aabca58c007f265c, type: 3}
+  - {fileID: 8143125689561882736, guid: 430301efeebb925498177a6eaacfc394, type: 3}
 --- !u!1 &1687611445
 GameObject:
   m_ObjectHideFlags: 0

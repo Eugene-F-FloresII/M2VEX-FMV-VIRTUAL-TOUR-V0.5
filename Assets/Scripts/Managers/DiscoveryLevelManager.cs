@@ -1,3 +1,4 @@
+using System;
 using Data;
 using Obvious.Soap;
 using TMPro;
@@ -17,10 +18,14 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI _playerName;
         [SerializeField] private TextMeshProUGUI _playerLevel;
 
+        private int _featureValue;
         private float _experiencePerLevel;
         private readonly float _multiplier = 2;
         
-
+        public static Action OnLevelChanged { get; set; }
+        public static Action<int> OnPlayerLevelChanged { get; set;}
+        
+        
         private void Start()
         {
             UpdatePlayerLevel();
@@ -29,13 +34,13 @@ namespace Managers
         private void OnEnable()
         {
             _currentLevel.OnValueChanged += LevelValueChanged;
-            KnowledgeManager.OnLevelChanged += ChangeMaxExperience;
+            OnLevelChanged += ChangeMaxExperience;
         }
 
         private void OnDisable()
         {
             _currentLevel.OnValueChanged -= LevelValueChanged;
-            KnowledgeManager.OnLevelChanged -= ChangeMaxExperience;
+            OnLevelChanged -= ChangeMaxExperience;
         }
 
         private void LevelValueChanged(int level)
@@ -54,6 +59,10 @@ namespace Managers
         {
             _playerLevel.text = _currentLevel.Value.ToString();
             _playerLevel.color = Color.darkViolet;
+            
+            OnPlayerLevelChanged?.Invoke(_featureValue);
+            
+            _featureValue++;
         }
     }
 

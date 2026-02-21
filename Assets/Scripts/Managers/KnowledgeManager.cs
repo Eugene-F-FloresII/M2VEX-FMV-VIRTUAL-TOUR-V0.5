@@ -40,7 +40,7 @@ namespace Managers
         private float _gainedExperienceValue;
         private float _subtractedValue;
         
-        public static Action OnLevelChanged { get; set; }
+        
 
         private void Awake()
         {
@@ -142,7 +142,7 @@ namespace Managers
             {
                 StopAllCoroutines();
                 
-                OnLevelChanged?.Invoke();
+                DiscoveryLevelManager.OnLevelChanged?.Invoke();
                 
                 _currentExperience.Value = 0;
                 

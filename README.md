@@ -21,33 +21,33 @@
 
 <h3 align = "center"> ⚠️⚠️REDUCE USE OF MAGIC NUMBERS, BOOLEANS, ETC.⚠️⚠️ </h3>
 
-<h2 align = "center">☑️ Features Checklist (60% Completion) </h2>
+<h2 align = "center">☑️ Features Checklist (68.57% Completion) </h2>
 
 ### Controllers: ###
-- Area Controller (Return Button) (Locked Area) ✅
+- Area Controller ✅
 - Look Controllers ✅
-- Transition Controller (Skip Logic?) ✅
+- Transition Controller ✅
 - Minigames Controller (Trivia, Rhythm, Memory) ✅
 - Minimap Controller ✅
-- Muriel Controller  ✅ (?)
-- Padlock Controller ✅ (?) 
+- Muriel Controller  ✅ 
+- Padlock Controller ✅ 
 
 ### Managers: ###
 - Location Manager✅
-- Pause Menu (?)✅
-- Muriel Manager  ✅ (?)
-- Discovery Level Manager ✓ (P)
-- Knowledge Manager ✓
-- Mood Manager (P) ✓
+- Pause Menu ✅
+- Muriel Manager  ✅ 
+- Discovery Level Manager ✅
+- Knowledge Manager ✅
+- Mood Manager  ✅
 - Score Manager (?)
 - Tooltip Manager (Bool checkers) ✅
 - Event Logs Manager ✅
 - Minigames Manager(Trivia, Rhythm, Memory) ✅
-- Video Player Manager  (Skip Logic?) ✅
+- Video Player Manager  ✅
 - Area Manager ✅
 - Video Clips Manager ✅
 - Background Image Manager ✅
-- Game Manager
+- Feature Manager
 - Audio Manager ✅
 
 ### Try: ###

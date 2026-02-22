@@ -40,10 +40,10 @@ namespace Managers
             ServiceLocator.Unregister<MurielManager>();
         }
         public void SpawnDialogue(params string[] dialogue)
-            {
-                _dialogues.AddRange(dialogue);
-                _murielController = CreateMurielController(_murielPrefab);
-            }
+        {
+            _dialogues.AddRange(dialogue);
+            _murielController = CreateMurielController(_murielPrefab);
+        }
         
         private void OnDialogueIndexUpdate(int value)
         {

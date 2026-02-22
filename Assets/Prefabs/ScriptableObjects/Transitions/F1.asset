@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Data.TransitionScriptableObject
   _transitionClips:
   - {fileID: 32900000, guid: 35f8022583c0fa643bd2bc8a078898a0, type: 3}
+  - {fileID: 32900000, guid: b593358b870383a4ea72ccd19f3a04ba, type: 3}
   _transitionReverseClips:
   - {fileID: 32900000, guid: 3924bae841c664d4cb2279a3f8560a9a, type: 3}
+  - {fileID: 32900000, guid: 9b4bf747d27a66b439fcc98984322ca6, type: 3}

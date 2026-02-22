@@ -860,6 +860,107 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &293580720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 293580721}
+  - component: {fileID: 293580724}
+  - component: {fileID: 293580723}
+  - component: {fileID: 293580722}
+  m_Layer: 0
+  m_Name: AreaCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &293580721
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293580720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1662773119}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &293580722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293580720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &293580723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293580720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &293580724
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293580720}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1 &305205847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,11 +2979,19 @@ MonoBehaviour:
   - {fileID: 1786212720474798553, guid: b9135c14caca8fb41bc6ef1148dc36af, type: 3}
   - {fileID: -3597359351373409662, guid: 6dee1b3f11fb2cf429d346743d7ccad8, type: 3}
   - {fileID: -4487128663927549927, guid: 65f76d498b6e2274682bbede198dc816, type: 3}
+  - {fileID: 666142918847490793, guid: b5db370348c8e2145b442c59b314497b, type: 3}
+  - {fileID: 1979763220308960026, guid: 71720b878cecd514e8baffcc0dabe289, type: 3}
+  - {fileID: -2678005080722173337, guid: 103377dde401b0f408398bd29f7018dd, type: 3}
+  - {fileID: -863197571307526783, guid: 425b55a9de8c8d14ebda2aef6881a28d, type: 3}
   _imageNamesID:
   - F1C-001-IDLE
   - F1CR-001-LR
   - F1CR-001-LF
   - F1CR-001-UP
+  - F1C-002-IDLE
+  - F1CR-002-LR
+  - F1CR-002-LF
+  - F1RW-001-IDLE
 --- !u!1 &833155447
 GameObject:
   m_ObjectHideFlags: 0
@@ -4974,6 +5083,7 @@ Transform:
   m_Children:
   - {fileID: 2020687108}
   - {fileID: 2110314279}
+  - {fileID: 1662773119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1372268173
@@ -4991,6 +5101,7 @@ MonoBehaviour:
   _areas:
   - {fileID: 2020687109}
   - {fileID: 2110314280}
+  - {fileID: 1662773120}
   _areaActive: {fileID: 11400000, guid: bfa7a95bdbb78974ab378ab6514dda94, type: 2}
 --- !u!1 &1378788277
 GameObject:
@@ -5877,6 +5988,107 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_TargetDisplay: 0
+--- !u!1 &1575008989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575008990}
+  - component: {fileID: 1575008993}
+  - component: {fileID: 1575008992}
+  - component: {fileID: 1575008991}
+  m_Layer: 0
+  m_Name: PadlockCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1575008990
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575008989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1662773119}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1575008991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575008989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1575008992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575008989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1575008993
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575008989}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 100
+  m_TargetDisplay: 0
 --- !u!1 &1593097785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6150,6 +6362,88 @@ MonoBehaviour:
   - {fileID: 6806118228585470062, guid: b57273443cb24664db3dc29d93c8972c, type: 3}
   - {fileID: 8127374902013013505, guid: 58f87ba2f3170424aabca58c007f265c, type: 3}
   - {fileID: 8143125689561882736, guid: 430301efeebb925498177a6eaacfc394, type: 3}
+--- !u!1 &1662773118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662773119}
+  - component: {fileID: 1662773120}
+  m_Layer: 0
+  m_Name: FRW-001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1662773119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662773118}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.73722, y: -1.3183, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 293580721}
+  - {fileID: 1575008990}
+  m_Father: {fileID: 1372268172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1662773120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662773118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4b65f439ffd774aa48fbbb1ab5fbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Controllers.AreaController
+  _areaClipName: F1RW-001-IDLE
+  _areaRightClipName: 
+  _areaLeftClipName: 
+  _areaUpClipName: 
+  _lookRightButtonPrefab: {fileID: 8816506524454944693, guid: 57aa55a2984c00f49986aa627f18ba68, type: 3}
+  _lookLeftButtonPrefab: {fileID: 3384055977444716619, guid: f315a26e9b05d964797c89baa33eca5d, type: 3}
+  _lookUpButtonPrefab: {fileID: 65116108022557531, guid: be26564e92643be449ef8d1c60a665e2, type: 3}
+  _forwardButtonPrefab: {fileID: 1719811733005810666, guid: 4c6449151b9a31e4795d49412d99ea6f, type: 3}
+  _backwardButtonPrefab: {fileID: -2511481992545631221, guid: 2385d10e8aac8f94e8c5904b883b89d0, type: 3}
+  _padLockPrefab: {fileID: 4340112000029083194, guid: 6dc187df610473245838631117cac776, type: 3}
+  _areaScriptableObject: {fileID: 11400000, guid: 03a91eff83db45f4eafcee8228c5024f, type: 2}
+  _areaCanvas: {fileID: 293580724}
+  _padlockCanvas: {fileID: 1575008993}
+  _buttonControllers: []
+  _lookRight: 1
+  _lookLeft: 1
+  _lookUp: 0
+  _back: 1
+  _forward: 0
+  _lookRightInteractable: 1
+  _lookLeftInteractable: 1
+  _forwardTransition: 0
+  _backwardTransition: 1
+  _rightTransition: 0
+  _leftTransition: 0
+  _areaRightToolTip: Hydraulics Room
+  _areaLeftToolTip: Machine Shop
+  _areaUpToolTip: Top View
+  _areaForwardToolTip: Go Foward
+  _areaBackwardToolTip: Go Back
+  _locationName: 'F1: Right Wing '
+  _lockArea: 0
+  _rightDestination: 0
+  _leftDestination: 0
+  _forwardDestination: 0
+  _backDestination: 1
 --- !u!1 &1687611445
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,8 +7002,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Managers.VideoClipManager
   _idleClips:
   - {fileID: 32900000, guid: bd310d9d0100be1459540e2d5e064e71, type: 3}
+  - {fileID: 32900000, guid: ff5a519c3311490488347ace23a1f58b, type: 3}
+  - {fileID: 32900000, guid: 28b31dd11b88ace4c8ec141d3b68f1c6, type: 3}
   _clipNamesID:
   - F1C-001-IDLE
+  - F1C-002-IDLE
+  - F1RW-001-IDLE
 --- !u!1 &1897985206
 GameObject:
   m_ObjectHideFlags: 0
@@ -7239,7 +7537,12 @@ MonoBehaviour:
   _lookUp: 1
   _back: 0
   _forward: 1
+  _lookRightInteractable: 0
+  _lookLeftInteractable: 0
   _forwardTransition: 0
+  _backwardTransition: 0
+  _rightTransition: 0
+  _leftTransition: 0
   _areaRightToolTip: Right Wing
   _areaLeftToolTip: Left Wing
   _areaUpToolTip: Top View
@@ -7247,6 +7550,10 @@ MonoBehaviour:
   _areaBackwardToolTip: Go Back
   _locationName: 'F1: Entrance'
   _lockArea: 0
+  _rightDestination: 0
+  _leftDestination: 0
+  _forwardDestination: 1
+  _backDestination: 0
 --- !u!1 &2075245044
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,33 +7675,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4b65f439ffd774aa48fbbb1ab5fbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controllers.AreaController
-  _areaClipName: F1C-001-IDLE
-  _areaRightClipName: F1CR-001-LR
-  _areaLeftClipName: F1CR-001-LF
-  _areaUpClipName: F1CR-001-UP
+  _areaClipName: F1C-002-IDLE
+  _areaRightClipName: F1CR-002-LR
+  _areaLeftClipName: F1CR-002-LF
+  _areaUpClipName: 
   _lookRightButtonPrefab: {fileID: 8816506524454944693, guid: 57aa55a2984c00f49986aa627f18ba68, type: 3}
   _lookLeftButtonPrefab: {fileID: 3384055977444716619, guid: f315a26e9b05d964797c89baa33eca5d, type: 3}
   _lookUpButtonPrefab: {fileID: 65116108022557531, guid: be26564e92643be449ef8d1c60a665e2, type: 3}
   _forwardButtonPrefab: {fileID: 1719811733005810666, guid: 4c6449151b9a31e4795d49412d99ea6f, type: 3}
   _backwardButtonPrefab: {fileID: -2511481992545631221, guid: 2385d10e8aac8f94e8c5904b883b89d0, type: 3}
   _padLockPrefab: {fileID: 4340112000029083194, guid: 6dc187df610473245838631117cac776, type: 3}
-  _areaScriptableObject: {fileID: 11400000, guid: b664f18d312059a4794fb165227175b0, type: 2}
+  _areaScriptableObject: {fileID: 11400000, guid: 2afe71b803e614a4495dc80203dcd4e5, type: 2}
   _areaCanvas: {fileID: 84411693}
   _padlockCanvas: {fileID: 1154558848}
   _buttonControllers: []
   _lookRight: 1
   _lookLeft: 1
-  _lookUp: 1
+  _lookUp: 0
   _back: 1
-  _forward: 1
-  _forwardTransition: 1
+  _forward: 0
+  _lookRightInteractable: 1
+  _lookLeftInteractable: 1
+  _forwardTransition: 0
+  _backwardTransition: 1
+  _rightTransition: 0
+  _leftTransition: 0
   _areaRightToolTip: Right Wing
   _areaLeftToolTip: Left Wing
   _areaUpToolTip: Top View
   _areaForwardToolTip: Go Foward
   _areaBackwardToolTip: Go Back
   _locationName: 'F1: Center Wing'
-  _lockArea: 1
+  _lockArea: 0
+  _rightDestination: 2
+  _leftDestination: 0
+  _forwardDestination: 0
+  _backDestination: 0
 --- !u!1 &2114995489
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,13 +12,15 @@ namespace Controllers
         private VideoPlayer _videoPlayer;
         private TooltipManager _tooltipManager;
         private AreaController _areaController;
-        private UnityEngine.Video.VideoClip _videoClip;
-        private UnityEngine.Video.VideoClip _videoReverseClip;
+        private VideoClip _videoClip;
+        private VideoClip _videoReverseClip;
 
 
         private string _currentClipName;
         private string _reverseClipName;
         private string _toolTipText;
+
+        private bool _isPlayingIdle = true;
 
         private void Start()
         {
@@ -30,14 +32,13 @@ namespace Controllers
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_videoPlayer.isLooping)
+            if (_isPlayingIdle)
             {
+                _isPlayingIdle = false;
                 VideoManager.OnPickedVideo?.Invoke(_videoClip, false, false);
             }
-            
-            //ToolTip Show
             _tooltipManager.ToolTipShow(_toolTipText);
-
+            
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -63,13 +64,13 @@ namespace Controllers
             _tooltipManager.HideTooltip();
         }
 
-        public void AreaVideoClip(UnityEngine.Video.VideoClip videoClip, string areaName)
+        public void AreaVideoClip(VideoClip videoClip, string areaName)
         {
             _videoClip = videoClip;
             _currentClipName = areaName;
         }
 
-        public void AreaReverseClip(UnityEngine.Video.VideoClip videoClip, string reverseClipName)
+        public void AreaReverseClip(VideoClip videoClip, string reverseClipName)
         {
             _videoReverseClip = videoClip;
             _reverseClipName = reverseClipName;

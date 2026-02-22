@@ -10,12 +10,15 @@ namespace Controllers
 {
     public class TransitionController : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
+        public int _roomTargetIndex;
+        public bool _isInteractable;
+        
         [Header("References")]
         [SerializeField] private TransitionScriptableObject _transitionScriptableObject;
         
         [Header("SOAP Information")]
         [SerializeField] private IntVariable _roomIndex;
-        [SerializeField] private BoolVariable _isReversed;
+        [SerializeField] private bool _isReversed;
         
         [Header("Tooltip Message")]
         [SerializeField] public string _toolTipMessage;
@@ -43,22 +46,27 @@ namespace Controllers
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            PlayTransition();
-            
-            _tooltipManager.HideTooltip();
-            
-            _locationManager.DisappearLocationText();
+            if (_isInteractable)
+            {
+                PlayTransition();
 
-            if (_isReversed.Value && _transitionMessage != null)
-            {
-             _eventLogsManager.InstantiateEventLogs(_transitionMessage, _areaManager._areas[_roomIndex.Value - 1].gameObject.name);
-            
-            } else if (!_isReversed.Value && _transitionMessage != null)
-            {
-                _eventLogsManager.InstantiateEventLogs(_transitionMessage, _areaManager._areas[_roomIndex.Value + 1].gameObject.name);
-                
+                _tooltipManager.HideTooltip();
+
+                _locationManager.DisappearLocationText();
+
+                if (_isReversed && _transitionMessage != null)
+                {
+                    _eventLogsManager.InstantiateEventLogs(_transitionMessage,
+                        _areaManager._areas[_roomIndex.Value - 1].gameObject.name);
+
+                }
+                else if (!_isReversed && _transitionMessage != null)
+                {
+                    _eventLogsManager.InstantiateEventLogs(_transitionMessage,
+                        _areaManager._areas[_roomIndex.Value + 1].gameObject.name);
+
+                }
             }
-
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -77,13 +85,13 @@ namespace Controllers
             
             _transitionManager.InstantiateSkipVideo();
             
-            if (!_isReversed.Value && _roomIndex != null && _transitionScriptableObject != null)
+            if (!_isReversed && _roomIndex != null && _transitionScriptableObject != null)
             {
-                _videoPlayer.clip = _transitionScriptableObject._transitionClips[_roomIndex];
+                _videoPlayer.clip = _transitionScriptableObject._transitionClips[_roomIndex.Value];
                 
-            } else if (_isReversed.Value && _roomIndex != null && _transitionScriptableObject != null)
+            } else if (_isReversed && _roomIndex != null && _transitionScriptableObject != null)
             {
-                _videoPlayer.clip = _transitionScriptableObject._transitionReverseClips[_roomIndex - 1];
+                _videoPlayer.clip = _transitionScriptableObject._transitionReverseClips[_roomIndex.Value - 1];
             }
             
             _videoPlayer.Play();
@@ -93,15 +101,7 @@ namespace Controllers
 
         private void TransitionFinished(VideoPlayer source)
         {
-            if (!_isReversed.Value)
-            {
-                _roomIndex.Value++;
-            }
-
-            if (_isReversed.Value)
-            {
-                _roomIndex.Value--;
-            }
+            _roomIndex.Value = _roomTargetIndex;
             
             _transitionManager.DestroySkipVideo();
             
@@ -122,7 +122,7 @@ namespace Controllers
 
         public void SetBoolVariable(bool value)
         {
-            _isReversed.Value = value;
+            _isReversed = value;
         }
 
         public void Initialize(AreaController areaController)

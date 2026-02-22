@@ -17,7 +17,7 @@ namespace Managers
 
         private string _currentActiveArea;
         
-        public static Action<UnityEngine.Video.VideoClip, bool, bool>  OnPickedVideo { get; set; }
+        public static Action<VideoClip, bool, bool>  OnPickedVideo { get; set; }
         public static Action OnExitedHover {get; set;}
         
         public static Action<string> OnReversedFinished {get; set;}
@@ -55,8 +55,10 @@ namespace Managers
             OnVideoReversedFinished -= AreaController;
         }
 
-        public void PlayVideo(UnityEngine.Video.VideoClip videoClip, bool loop, bool reverse)
+        public void PlayVideo(VideoClip videoClip, bool loop, bool reverse)
         {
+            UnsubscribeVideoEvent();
+            
             _videoPlayer.clip = videoClip;
             _videoPlayer.isLooping = loop;
 
@@ -73,6 +75,8 @@ namespace Managers
             {
                 _videoPlayer.loopPointReached += ReversePlayed;
             }
+            
+            _videoPlayer.Play();
         }
 
         private void VideoPlayed(VideoPlayer source)

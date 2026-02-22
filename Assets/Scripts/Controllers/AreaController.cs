@@ -32,7 +32,7 @@ namespace Controllers
         [SerializeField] private Canvas _areaCanvas;
         [SerializeField] private Canvas _padlockCanvas;
         
-        [Header("List of Buttons in Area (Don't add anything here)")]
+        [Header("List of Buttons in Area (**READ ONLY**)")]
         [SerializeField] private List<GameObject> _buttonControllers;
         
         [Header("Areas to look at?")]
@@ -41,9 +41,17 @@ namespace Controllers
         [SerializeField] private bool _lookUp;
         [SerializeField] private bool _back;
         [SerializeField] private bool _forward;
+
+        [Header("Are buttons Interactable (Left and Right areas)")] 
+        [SerializeField] private bool _lookRightInteractable;
+        [SerializeField] private bool _lookLeftInteractable;
         
         [Header("Is Transition reversed?")]
         [SerializeField] private bool _forwardTransition;
+        [SerializeField] private bool _backwardTransition;
+        [SerializeField] private bool _rightTransition;
+        [SerializeField] private bool _leftTransition;
+        
         
         [Header("Tooltip")]
         [SerializeField] private string _areaRightToolTip;
@@ -57,6 +65,12 @@ namespace Controllers
 
         [Header("Does area have minigame?")] 
         [SerializeField] public bool _lockArea;
+
+        [Header("Transition Destination(Use elements in AreaManager)")] 
+        [SerializeField] private int _rightDestination;
+        [SerializeField] private int _leftDestination;
+        [SerializeField] private int _forwardDestination;
+        [SerializeField] private int _backDestination;
         
         private PadLockController _padLockController;
         private LocationManager _locationManager;
@@ -66,6 +80,8 @@ namespace Controllers
         private LookController _lookUpController;
         private TransitionController _forwardTransitionController;
         private TransitionController _backwardTransitionController;
+        private TransitionController _rightTransitionController;
+        private TransitionController _leftTransitionController;
         
         private void Awake()
         {
@@ -139,6 +155,13 @@ namespace Controllers
                     _areaScriptableObject._lookRightClip,
                     _areaScriptableObject._lookRightClipReversed,
                     _areaClipName);
+
+                GetTransitionController(_lookRightController,
+                    _rightDestination,
+                    _rightTransition,
+                    _lookRightInteractable,
+                    _areaRightToolTip
+                );
                 
                 _buttonControllers.Add(_lookRightController.gameObject);
             }
@@ -151,6 +174,13 @@ namespace Controllers
                     _areaScriptableObject._lookLeftClip,
                     _areaScriptableObject._lookLeftClipReversed,
                     _areaClipName);
+                
+                GetTransitionController(_lookLeftController,
+                    _leftDestination,
+                    _leftTransition,
+                    _lookLeftInteractable,
+                    _areaLeftToolTip
+                );
                 
                 _buttonControllers.Add(_lookLeftController.gameObject);
             }
@@ -171,7 +201,8 @@ namespace Controllers
             {
                 _forwardTransitionController = CreateTransitionController(_forwardButtonPrefab,
                     _areaForwardToolTip,
-                    _forwardTransition);
+                    _forwardTransition,
+                    _forwardDestination);
 
                 _buttonControllers.Add(_forwardTransitionController.gameObject);
             }
@@ -180,11 +211,26 @@ namespace Controllers
             {
                 _backwardTransitionController = CreateTransitionController(_backwardButtonPrefab,
                     _areaBackwardToolTip,
-                    _forwardTransition);
+                    _backwardTransition,
+                    _backDestination);
                 
                 _buttonControllers.Add(_backwardTransitionController.gameObject);
             }
         }
+
+        private LookController GetTransitionController(LookController lookController, int roomTargetIndex, bool transition,
+            bool isInteractable, string tooltip)
+        {
+            var controller = lookController;
+            var transitionController = controller.GetComponent<TransitionController>();
+            transitionController.Initialize(this);
+            transitionController.SetBoolVariable(transition);
+            transitionController._toolTipMessage = tooltip;
+            transitionController._isInteractable = isInteractable;
+            transitionController._roomTargetIndex = roomTargetIndex;
+            return controller;
+        }
+       
        
         private LookController CreateLookButton(LookController lookControllerPrefab,
             string toolTip,
@@ -194,6 +240,7 @@ namespace Controllers
         {
             
             var lookController = Instantiate(lookControllerPrefab, _areaCanvas.transform);
+            
             lookController.Initialize(this, toolTip);
             lookController.AreaVideoClip(mainClip, clipName);
 
@@ -208,17 +255,19 @@ namespace Controllers
 
         private TransitionController CreateTransitionController(TransitionController transitionControllerPrefab,
             string toolTip,
-            bool transition
+            bool transition,
+            int destination
         )
         {
             var transitionController = Instantiate(transitionControllerPrefab, _areaCanvas.transform);
             transitionController.Initialize(this);
             transitionController.PlaceToolTipMessage(toolTip);
             transitionController.SetBoolVariable(transition);
+            transitionController._roomTargetIndex = destination;
             
             return transitionController;
         }
-
+        
 
     }
     

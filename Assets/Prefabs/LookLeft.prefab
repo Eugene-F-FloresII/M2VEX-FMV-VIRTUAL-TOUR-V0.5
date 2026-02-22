@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7577403030442607429}
   - component: {fileID: 7982872936544081085}
   - component: {fileID: 3384055977444716619}
+  - component: {fileID: 6943123932325217367}
   m_Layer: 0
   m_Name: LookLeft
   m_TagString: Untagged
@@ -133,3 +134,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c79781ad86582640b6beb5d8481d370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookController
+--- !u!114 &6943123932325217367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825719173264391975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2c3173c32ac164cabcb02518dba971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Controllers.TransitionController
+  _roomTargetIndex: 0
+  _isInteractable: 0
+  _transitionScriptableObject: {fileID: 11400000, guid: 1d0d48104247728439bb35a14e12824d, type: 2}
+  _roomIndex: {fileID: 11400000, guid: bfa7a95bdbb78974ab378ab6514dda94, type: 2}
+  _isReversed: {fileID: 11400000, guid: 7ac6424a0b3e18345ac5c54db7b96042, type: 2}
+  _toolTipMessage: 

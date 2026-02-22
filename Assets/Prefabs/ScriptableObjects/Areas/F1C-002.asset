@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ad325723438c546a56a8ff6307dcda, type: 3}
+  m_Name: F1C-002
+  m_EditorClassIdentifier: Assembly-CSharp::Data.VideoClipsScriptableObject
+  _lookRightClip: {fileID: 32900000, guid: 9568ddf6bbcede64396ee55673518aea, type: 3}
+  _lookRightClipReversed: {fileID: 32900000, guid: 381798e5eb1fd09449ff8d67716b9381, type: 3}
+  _lookLeftClip: {fileID: 32900000, guid: cbec0cfdff03baf4f871b225d7da8a9d, type: 3}
+  _lookLeftClipReversed: {fileID: 32900000, guid: 373cd1e7f263b6d40950a45cc6251d2e, type: 3}
+  _lookUpClip: {fileID: 0}
+  _lookUpClipReversed: {fileID: 0}

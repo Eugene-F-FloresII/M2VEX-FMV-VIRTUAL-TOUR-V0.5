@@ -43,6 +43,7 @@ namespace Controllers
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            _isPlayingIdle = true;
             
             if (_videoReverseClip != null && _videoPlayer.isPaused)
             {

@@ -50,6 +50,8 @@ namespace Managers
             
             Destroy(_minigame);
             
+            Debug.Log($"GameFinished targeting: {_areaController.gameObject.GetInstanceID()}");
+            
         }
 
         public void Initialize(AreaController areaController)

@@ -81,7 +81,7 @@ namespace Controllers
 
         private void PlayTransition()
         {
-            _areaController.DestroyButtons();
+            _areaController.ExitArea();
             
             _transitionManager.InstantiateSkipVideo();
             

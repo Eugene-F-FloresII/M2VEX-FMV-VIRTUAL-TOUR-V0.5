@@ -8,9 +8,9 @@ using UnityEngine.Video;
 namespace Controllers
 {
     
-    public class AreaController : MonoBehaviour
+    public class AreaController : MonoBehaviour, IAreaController
     {
-        [Header("Idle Video from VideoClipsManager")]
+        [Header("Idle Video (**FROM VideoClipsManager**")]
         [SerializeField] private string _areaClipName;
         
         [Header("Reverse Images Present")]
@@ -71,7 +71,7 @@ namespace Controllers
         [Header("Does area have minigame?")] 
         [SerializeField] public bool _lockArea;
 
-        [Header("Transition Destination(Use elements in AreaManager)")] 
+        [Header("Transition Destination (USE ELEMENTS IN AREAS)")] 
         [SerializeField] private int _rightDestination;
         [SerializeField] private int _leftDestination;
         [SerializeField] private int _forwardDestination;
@@ -95,6 +95,16 @@ namespace Controllers
 
         private void OnEnable()
         {
+            EnterArea();
+        }
+
+        private void OnDisable()
+        {
+            ExitArea();
+        }
+
+        public void EnterArea()
+        {
             UpdateAreaPadlock();
             
             SpawnButtons();
@@ -102,10 +112,9 @@ namespace Controllers
             VideoClipManager.OnPickedIdleClipName?.Invoke(_areaClipName);
             
             _locationManager.UpdateLocationText(_locationName);
-
         }
 
-        private void OnDisable()
+        public void ExitArea()
         {
             if (_buttonControllers.Count != 0)
             {
@@ -132,6 +141,8 @@ namespace Controllers
 
         public void UpdateAreaPadlock()
         {
+            Debug.Log($"UpdateAreaPadlock called on: {gameObject.GetInstanceID()}");
+            
             if (_lockArea && _padlockCanvas != null)
             {
                 _padLockController = Instantiate(_padLockPrefab,
@@ -140,7 +151,8 @@ namespace Controllers
             }
             else
             {
-                if (_padLockController != null && _padlockCanvas != null)
+                Debug.Log($"_lockArea is false. PadLockController null? {_padLockController == null}");
+                if (_padLockController != null)
                 {
                     Destroy(_padLockController.gameObject);
                 }

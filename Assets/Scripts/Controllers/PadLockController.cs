@@ -18,9 +18,9 @@ namespace Controllers
 
         public void OnButtonClick()
         {
-            _minigameManager.PickRandomGame();
             _minigameManager.Initialize(_areaController);
             
+            _minigameManager.PickRandomGame();
         }
 
         public void Initialize(AreaController areaController)

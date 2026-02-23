@@ -38,7 +38,6 @@ namespace Managers
             
             _areas[_areaActive.Value].gameObject.SetActive(true);
             
-            
         }
     }
 }

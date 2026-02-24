@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Collection;
 using Data;
+using Gameplay;
 using UnityEngine;
 using Managers;
 using UnityEngine.Video;
@@ -32,10 +33,13 @@ namespace Controllers
         [Header("Canvas Reference")]
         [SerializeField] private Canvas _areaCanvas;
         [SerializeField] private Canvas _padlockCanvas;
+        [SerializeField] private Canvas _descriptionCanvas;
         [SerializeField] private Transform _spawnPointOne;
         [SerializeField] private Transform _spawnPointTwo;
         [SerializeField] private Transform _spawnPointThree;
-        
+
+        [Header("Description Area Reference")]
+        [SerializeField] private DescriptionPanel _descriptionPanel;
         
         [Header("List of Buttons in Area (**READ ONLY**)")]
         [SerializeField] private List<GameObject> _buttonControllers;
@@ -77,6 +81,7 @@ namespace Controllers
         [SerializeField] private int _forwardDestination;
         [SerializeField] private int _backDestination;
         
+        
         private PadLockController _padLockController;
         private LocationManager _locationManager;
         private EventLogsManager _eventLogsManager;
@@ -105,6 +110,12 @@ namespace Controllers
 
         public void EnterArea()
         {
+            if (_descriptionPanel != null && _descriptionCanvas != null)
+            {
+                _descriptionPanel = Instantiate(_descriptionPanel, _descriptionCanvas.transform);
+                _descriptionPanel.EnterArea();
+            }
+            
             UpdateAreaPadlock();
             
             SpawnButtons();
@@ -116,6 +127,12 @@ namespace Controllers
 
         public void ExitArea()
         {
+            if (_descriptionPanel != null)
+            {
+                _descriptionPanel.ExitArea();
+                _descriptionPanel = null;
+            }
+            
             if (_buttonControllers.Count != 0)
             {
                 DestroyButtons();

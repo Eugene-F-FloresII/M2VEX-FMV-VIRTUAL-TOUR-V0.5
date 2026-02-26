@@ -76,10 +76,10 @@ namespace Controllers
         [SerializeField] public bool _lockArea;
 
         [Header("Transition Destination (USE ELEMENTS IN AREAS)")] 
-        [SerializeField] private int _rightDestination;
-        [SerializeField] private int _leftDestination;
-        [SerializeField] private int _forwardDestination;
-        [SerializeField] private int _backDestination;
+        [AreaDropdown] [SerializeField] private int _rightDestination;
+        [AreaDropdown] [SerializeField] private int _leftDestination;
+        [AreaDropdown] [SerializeField] private int _forwardDestination;
+        [AreaDropdown] [SerializeField] private int _backDestination;
         
         
         private PadLockController _padLockController;

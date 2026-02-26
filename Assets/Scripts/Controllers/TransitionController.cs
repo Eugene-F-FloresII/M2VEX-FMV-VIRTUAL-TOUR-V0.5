@@ -10,7 +10,7 @@ namespace Controllers
 {
     public class TransitionController : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        public int _roomTargetIndex;
+        [AreaDropdown] public int _roomTargetIndex;
         public bool _isInteractable;
         
         [Header("References")]

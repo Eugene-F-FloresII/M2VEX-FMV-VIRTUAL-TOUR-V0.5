@@ -16,7 +16,7 @@ public class AreaDropdownDrawer : PropertyDrawer
         }
 
         // 2. Find the AreaManager in the current scene
-        AreaManager areaManager = ServiceLocator.Get<AreaManager>();
+        AreaManager areaManager = Object.FindObjectOfType<AreaManager>();
 
         // 3. Fallback: If no AreaManager is found, just draw a normal integer field
         if (areaManager == null || areaManager._areas == null || areaManager._areas.Count == 0)
@@ -27,6 +27,7 @@ public class AreaDropdownDrawer : PropertyDrawer
 
         // 4. Build a list of names from the AreaManager
         string[] areaNames = new string[areaManager._areas.Count];
+        
         for (int i = 0; i < areaManager._areas.Count; i++)
         {
             var area = areaManager._areas[i];

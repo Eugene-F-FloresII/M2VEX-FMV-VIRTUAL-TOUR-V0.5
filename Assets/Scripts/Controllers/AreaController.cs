@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Attributes;
 using Collection;
 using Data;
 using Gameplay;
@@ -80,6 +81,12 @@ namespace Controllers
         [AreaDropdown] [SerializeField] private int _leftDestination;
         [AreaDropdown] [SerializeField] private int _forwardDestination;
         [AreaDropdown] [SerializeField] private int _backDestination;
+
+        [Header("Transition Video Indexes")] 
+        [TransitionVideoDropdown] [SerializeField] private int _rightVideoIndex;
+        [TransitionVideoDropdown] [SerializeField] private int _leftVideoIndex;
+        [TransitionVideoDropdown] [SerializeField] private int _forwardVideoIndex;
+        [TransitionVideoDropdown] [SerializeField] private int _backVideoIndex;
         
         
         private PadLockController _padLockController;
@@ -196,7 +203,8 @@ namespace Controllers
                     _rightDestination,
                     _rightTransition,
                     _lookRightInteractable,
-                    _areaRightToolTip
+                    _areaRightToolTip,
+                    _rightVideoIndex
                 );
                 
                 _buttonControllers.Add(_lookRightController.gameObject);
@@ -216,7 +224,8 @@ namespace Controllers
                     _leftDestination,
                     _leftTransition,
                     _lookLeftInteractable,
-                    _areaLeftToolTip
+                    _areaLeftToolTip,
+                    _leftVideoIndex
                 );
                 
                 _buttonControllers.Add(_lookLeftController.gameObject);
@@ -240,7 +249,8 @@ namespace Controllers
                 _forwardTransitionController = CreateTransitionController(_forwardButtonPrefab,
                     _areaForwardToolTip,
                     _forwardTransition,
-                    _forwardDestination);
+                    _forwardDestination,
+                    _forwardVideoIndex);
 
                 _buttonControllers.Add(_forwardTransitionController.gameObject);
             }
@@ -250,7 +260,8 @@ namespace Controllers
                 _backwardTransitionController = CreateTransitionController(_backwardButtonPrefab,
                     _areaBackwardToolTip,
                     _backwardTransition,
-                    _backDestination);
+                    _backDestination,
+                    _backVideoIndex);
                 
                 _buttonControllers.Add(_backwardTransitionController.gameObject);
             }
@@ -260,7 +271,8 @@ namespace Controllers
             int roomTargetIndex, 
             bool transition,
             bool isInteractable, 
-            string tooltip)
+            string tooltip,
+            int videoIndex)
         {
             var controller = lookController;
             var transitionController = controller.GetComponent<TransitionController>();
@@ -269,6 +281,7 @@ namespace Controllers
             transitionController._toolTipMessage = tooltip;
             transitionController._isInteractable = isInteractable;
             transitionController._roomTargetIndex = roomTargetIndex;
+            transitionController._transitionVideoIndex = videoIndex;
             return controller;
         }
        
@@ -309,7 +322,8 @@ namespace Controllers
         private TransitionController CreateTransitionController(TransitionController transitionControllerPrefab,
             string toolTip,
             bool transition,
-            int destination
+            int destination,
+            int videoIndex
         )
         {
             var transitionController = Instantiate(transitionControllerPrefab, _areaCanvas.transform);
@@ -317,6 +331,7 @@ namespace Controllers
             transitionController.PlaceToolTipMessage(toolTip);
             transitionController.SetBoolVariable(transition);
             transitionController._roomTargetIndex = destination;
+            transitionController._transitionVideoIndex = videoIndex;
             
             return transitionController;
         }

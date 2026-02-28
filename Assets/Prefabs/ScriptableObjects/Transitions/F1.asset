@@ -17,8 +17,10 @@ MonoBehaviour:
   - {fileID: 32900000, guid: b593358b870383a4ea72ccd19f3a04ba, type: 3}
   - {fileID: 32900000, guid: 064da4a6f3e80da4d9269d62909528e5, type: 3}
   - {fileID: 32900000, guid: f737538ff00f8d241a51d7b04bdf1a1a, type: 3}
+  - {fileID: 32900000, guid: 93ca4461c3fb8164aaee58989c17adcb, type: 3}
   _transitionReverseClips:
   - {fileID: 32900000, guid: 3924bae841c664d4cb2279a3f8560a9a, type: 3}
   - {fileID: 32900000, guid: 9b4bf747d27a66b439fcc98984322ca6, type: 3}
   - {fileID: 32900000, guid: 788cbbd65739a8340ba98f9a221142ff, type: 3}
   - {fileID: 32900000, guid: 11cf9e7985b280e4aa8c14fe62f27378, type: 3}
+  - {fileID: 32900000, guid: 47abb3c57869c5e44b586695231129a8, type: 3}

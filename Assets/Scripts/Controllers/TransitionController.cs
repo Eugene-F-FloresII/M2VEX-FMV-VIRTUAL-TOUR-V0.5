@@ -1,3 +1,4 @@
+using Attributes;
 using Collection;
 using Data;
 using Managers;
@@ -11,6 +12,7 @@ namespace Controllers
     public class TransitionController : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [AreaDropdown] public int _roomTargetIndex;
+        [TransitionVideoDropdown] public int _transitionVideoIndex;
         public bool _isInteractable;
         
         [Header("References")]
@@ -33,6 +35,7 @@ namespace Controllers
         private AreaController _areaController;
         private EventLogsManager _eventLogsManager;
         private TransitionManager _transitionManager;
+        
 
         private void Start()
         {
@@ -54,17 +57,10 @@ namespace Controllers
 
                 _locationManager.DisappearLocationText();
 
-                if (_isReversed && _transitionMessage != null)
+                if (_transitionMessage != null)
                 {
                     _eventLogsManager.InstantiateEventLogs(_transitionMessage,
-                        _areaManager._areas[_roomIndex.Value - 1].gameObject.name);
-
-                }
-                else if (!_isReversed && _transitionMessage != null)
-                {
-                    _eventLogsManager.InstantiateEventLogs(_transitionMessage,
-                        _areaManager._areas[_roomIndex.Value + 1].gameObject.name);
-
+                        _areaManager._areas[_roomTargetIndex].gameObject.name);
                 }
             }
         }
@@ -85,17 +81,21 @@ namespace Controllers
             
             _transitionManager.InstantiateSkipVideo();
             
-            if (!_isReversed && _roomIndex != null && _transitionScriptableObject != null)
+            if (_transitionScriptableObject != null)
             {
-                _videoPlayer.clip = _transitionScriptableObject._transitionClips[_roomIndex.Value];
-                
-            } else if (_isReversed && _roomIndex != null && _transitionScriptableObject != null)
-            {
-                _videoPlayer.clip = _transitionScriptableObject._transitionReverseClips[_roomIndex.Value - 1];
+                if (!_isReversed)
+                {
+                    _videoPlayer.clip = _transitionScriptableObject._transitionClips[_transitionVideoIndex];
+                } 
+                else 
+                {
+                    _videoPlayer.clip = _transitionScriptableObject._transitionReverseClips[_transitionVideoIndex];
+                }
             }
             
             _videoPlayer.Play();
             
+            _videoPlayer.loopPointReached -= TransitionFinished;
             _videoPlayer.loopPointReached += TransitionFinished;
         }
 
